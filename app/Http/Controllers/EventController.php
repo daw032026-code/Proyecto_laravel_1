@@ -7,6 +7,7 @@ use App\Models\Event;
 use Illuminate\Support\Facades\Validator;
 
 
+
 class EventController extends Controller
 {
     /**
@@ -35,6 +36,7 @@ class EventController extends Controller
         $validator = Validator::make($request->all(), [
             'event_name'   => 'required|string|max:255',
             'event_detail' => 'nullable|string|max:255',
+            'event_type_id'   => 'required|integer|exists:event_types,id'
         ]);
 
         // 2. Si algo falla, devolvemos los errores

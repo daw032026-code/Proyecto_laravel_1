@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventTypeController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -27,4 +29,8 @@ Route::controller(AddressController::class)->group(function () {
 Route::controller(EventController::class)->group(function() {
     Route::post('event', 'store');
     Route::get('event/{event}/user', 'listUsers');
+});
+
+Route::controller(EventTypeController::class)->group(function() {
+    Route::get('type/{type}', 'listEvents');
 });
